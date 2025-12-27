@@ -13,15 +13,12 @@
             width: 100%;
             height: 100%;
             background: #eee;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                Roboto, Helvetica, Arial, sans-serif;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
             overscroll-behavior: none;
-        }
-        * {
             user-select: none;
-            -webkit-user-select: none;
-            -webkit-touch-callout: none;
         }
         body {
             display: flex;
@@ -32,7 +29,7 @@
             font-weight: 900;
             color: #111;
             line-height: 1;
-            transition: transform 0.2s ease;
+            transition: transform 0.15s ease;
             max-width: 100vw;
             text-align: center;
             white-space: nowrap;
@@ -44,7 +41,6 @@
 </head>
 <body>
     <div id="counter">0</div>
-
     <script>
         let count = 0;
         const counterEl = document.getElementById("counter");
@@ -60,28 +56,18 @@
             count += 1;
             counterEl.textContent = count;
             updateFontSize();
+
             counterEl.classList.add("active");
             setTimeout(() => {
                 counterEl.classList.remove("active");
-            }, 150);
+            }, 120);
         }
 
         updateFontSize();
-        document.body.addEventListener("touchstart", increment, {
-            passive: true,
-        });
-        document.body.addEventListener("click", increment);
-    </script>
 
-    <script>
-        document.addEventListener("gesturestart", function (e) {
+        document.body.addEventListener("pointerdown", (e) => {
             e.preventDefault();
-        });
-        document.addEventListener("gesturechange", function (e) {
-            e.preventDefault();
-        });
-        document.addEventListener("gestureend", function (e) {
-            e.preventDefault();
+            increment();
         });
     </script>
 </body>
